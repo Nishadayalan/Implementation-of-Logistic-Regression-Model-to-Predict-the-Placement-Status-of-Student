@@ -1,132 +1,135 @@
-# Implementation-of-Logistic-Regression-Model-to-Predict-the-Placement-Status-of-Student
-
-## AIM:
+### Implementation-of-Logistic-Regression-Model-to-Predict-the-Placement-Status-of-Student
+### Date:11-10-2024
+### AIM:
 To write a program to implement the the Logistic Regression Model to Predict the Placement Status of Student.
 
-## Equipments Required:
-1. Hardware – PCs
-2. Anaconda – Python 3.7 Installation / Jupyter notebook
+### Equipments Required:
+Hardware – PCs
+Anaconda – Python 3.7 Installation / Jupyter notebook
 
-## Algorithm:
-Import the required packages and print the present data.
-Print the placement data and salary data.
-Find the null and duplicate values.
-Using logistic regression find the predicted values of accuracy , confusion matrices.
-Display the results.
+### Algorithm
+Step 1: start the program
 
-## Program:
+Step 2: Load and preprocess the dataset: drop irrelevant columns, handle missing values, and encode categorical variables using LabelEncoder.
+
+Step 3: Split the data into training and test sets using train_test_split.
+
+Step 4: Create and fit a logistic regression model to the training data.
+
+Step 5: Predict the target variable on the test set and evaluate performance using accuracy, confusion matrix, and classification report.
+
+Step 6:Display the confusion matrix using metrics.ConfusionMatrixDisplay and plot the results.
+
+Step 7:End the program.
+
+### Program:
 ```
 Program to implement the the Logistic Regression Model to Predict the Placement Status of Student.
-Developed by: NISHA D
-RegisterNumber:  212223230143
+Developed by: Nisha D
+RegisterNumber: 212223230143
 ```
 ```
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-data=pd.read_csv("placement.csv")
-print(data)
+from sklearn.metrics import confusion_matrix,accuracy_score
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/e0911405-4bc4-4e07-9e48-dd82e2f60953)
 ```
-data.head()
+dataset=pd.read_csv('Placement.csv')
+print(dataset)
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/88464ba2-173f-4d51-aba8-6fa53f10b53e)
+### Output:
+![image](https://github.com/user-attachments/assets/6cfc2506-dda5-4ebe-87b5-d4d853fb67e4)
 ```
-data.tail()
+dataset.head()
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/72178cc8-c1f5-41b8-9da8-f03521cd9d89)
+### Output:
+![image](https://github.com/user-attachments/assets/72a2d107-6866-4c3e-a457-b4e84a3ccb0e)
 ```
-data.info()
+dataset.tail()
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/d806a719-eb49-4841-b021-5d7fae573953)
+### Output:
+![image](https://github.com/user-attachments/assets/1578f963-87ee-4a1b-b94e-0d3be2f13730)
+```
+dataset.info()
+```
+### Output:
+![image](https://github.com/user-attachments/assets/76d2a3b0-4012-44f1-b6f8-deda4cc94001)
 
 ```
-data.drop('sl_no',axis=1,inplace=True)
-data.info()
+dataset.drop('sl_no',axis=1,inplace=True)
+dataset.info()
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/008d1c8c-32c8-41b7-8740-9e104910acc6)
+### Output:
+![image](https://github.com/user-attachments/assets/641e9186-5554-4008-92c6-9cbe54af7ee8)
 ```
-data["gender"]=data["gender"].astype('category')
-data["ssc_b"]=data["ssc_b"].astype('category')
-data["hsc_b"]=data["hsc_b"].astype('category')
-data["degree_t"]=data["degree_t"].astype('category')
-data["workex"]=data["workex"].astype('category')
-data["specialisation"]=data["specialisation"].astype('category')
-data["status"]=data["status"].astype('category')
-data["hsc_s"]=data["hsc_s"].astype('category')
-data.dtypes
+dataset["gender"]=dataset["gender"].astype('category')
+dataset["ssc_b"]=dataset["ssc_b"].astype('category')
+dataset["hsc_b"]=dataset["hsc_b"].astype('category')
+dataset["degree_t"]=dataset["degree_t"].astype('category')
+dataset["workex"]=dataset["workex"].astype('category')
+dataset["specialisation"]=dataset["specialisation"].astype('category')
+dataset["status"]=dataset["status"].astype('category')
+dataset["hsc_s"]=dataset["hsc_s"].astype('category')
+dataset.dtypes
 ```
-## Output:
-![image](https://github.com/user-attachments/assets/e490619c-be2e-497a-a44a-50c98f887ce5)
+### Output:
+![image](https://github.com/user-attachments/assets/ab4af9f5-aa7a-46c5-ad6a-85f76e628713)
 ```
-data.info()
-```
-## Output:
-![image](https://github.com/user-attachments/assets/6fc5d3fd-e342-44fd-8e0c-62eeaa48ac8a)
-```
-data["gender"]=data["gender"].cat.codes
-data["ssc_b"]=data["ssc_b"].cat.codes
-data["hsc_b"]=data["hsc_b"].cat.codes
-data["degree_t"]=data["degree_t"].cat.codes
-data["workex"]=data["workex"].cat.codes
-data["specialisation"]=data["specialisation"].cat.codes
-data["status"]=data["status"].cat.codes
-data["hsc_s"]=data["hsc_s"].cat.codes
+dataset["gender"]=dataset["gender"].cat.codes
+dataset["ssc_b"]=dataset["ssc_b"].cat.codes
+dataset["hsc_b"]=dataset["hsc_b"].cat.codes
+dataset["degree_t"]=dataset["degree_t"].cat.codes
+dataset["workex"]=dataset["workex"].cat.codes
+dataset["specialisation"]=dataset["specialisation"].cat.codes
+dataset["status"]=dataset["status"].cat.codes
+dataset["hsc_s"]=dataset["hsc_s"].cat.codes
 ```
 ```
-data.info()
+dataset.info()
 ```
-## Output:
-
-![image](https://github.com/user-attachments/assets/10d0df7a-1fd9-4e68-bd7c-f2782f2e8c74)
+### Output:
+![image](https://github.com/user-attachments/assets/a3296e42-b0a2-41e5-bd3b-daa0b9fb17ee)
 ```
-data.head()
+dataset.head()
 ```
-## Output:
-
-![image](https://github.com/user-attachments/assets/57244eee-3ef0-4d9d-829b-16f180e649e1)
+### Output:
+![image](https://github.com/user-attachments/assets/b74d423d-2cc5-4e03-9289-b5e15ec7ca61)
 ```
-x=data.iloc[:, :-1].values
+x=dataset.iloc[:,:-1].values 
 x
 ```
-## Output:
-
-![image](https://github.com/user-attachments/assets/28e97a1a-7129-4df4-b750-e31613086495)
+### Output:
+![image](https://github.com/user-attachments/assets/bd93fb8b-1cf6-4521-b987-bc6ca57259ea)
 ```
-y=data.iloc[:, -1].values
+y=dataset.iloc[:,-1].values
 y
 ```
-## Output:
-
-![image](https://github.com/user-attachments/assets/a0872cc7-de78-435c-9367-7667dbdaf3ae)
+### Output:
+![image](https://github.com/user-attachments/assets/97cbc1df-ba85-4283-b6e7-f657f385c44f)
 ```
-x.shape
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=1)
+clf=LogisticRegression()
+clf.fit(x_train,y_train)
+clf.score(x_test,y_test)
 ```
-## Output:
-
-![image](https://github.com/user-attachments/assets/a14360ab-d403-47de-9152-e4ac4439e723)
-```
-y.shape
-```
-## Output:
-
-![image](https://github.com/user-attachments/assets/cb1c631c-0f5e-4f2f-8c05-f9453efb4bdf)
-```
+### Output:
+![image](https://github.com/user-attachments/assets/fa1465f2-eec1-4891-a338-77932b2ef409)
 
 ```
-## Output:
+y_pred=cf.predict(x_test)
+cf.score(x_test,y_test)
+```
+### Output:
+![image](https://github.com/user-attachments/assets/3adc550f-aec6-40e0-bc82-a3efcfab29b7)
+```
+print(cf)
+accuracy=accuracy_score(y_test,y_pred)
+print(accuracy)
+```
+### Output:
+![image](https://github.com/user-attachments/assets/39a4f7fb-bfa7-4499-a442-88b26a77ad1b)
 
-## Output:
-![the Logistic Regression Model to Predict the Placement Status of Student](sam.png)
 
-
-## Result:
+### Result:
 Thus the program to implement the the Logistic Regression Model to Predict the Placement Status of Student is written and verified using python programming.
